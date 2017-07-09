@@ -65,3 +65,4 @@ right before "ENTRYPOINT". This installs the output plugin for Elasticsearch. Th
 - [Fluentd website](https://www.fluentd.org)
 - [Fluentd's Repo](https://github.com/fluent/fluentd)
 - [Kubernetes's Logging Pod](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/contrib/logging)
+- [Fluentd Enterprise by Treasure Data](https://fluentd.treasuredata.com)
