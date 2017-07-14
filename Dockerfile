@@ -1,11 +1,9 @@
-FROM fluent/fluentd:stable
+FROM fluent/fluentd:v0.14-onbuild
 
-# RUN mkdir /etc/fluent
-ADD fluent.conf /etc/fluent/
-
-# RUN ["apt-get", "update"]
-# RUN ["apt-get", "install", "--yes", "make", "libcurl4-gnutls-dev"]
-RUN ["gem", "install", "fluent-plugin-record-reformer", "--no-rdoc", "--no-ri"]
-RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-rdoc", "--no-ri"]
-
-ENTRYPOINT ["/usr/local/bin/fluentd", "-c", "/etc/fluent/fluent.conf"]
+RUN apk add --update --virtual .build-deps \
+        sudo build-base ruby-dev \
+ && sudo gem install fluent-plugin-elasticsearch \
+ && sudo gem sources --clear-all \
+ && apk del .build-deps \
+ && rm -rf /var/cache/apk/* \
+           /home/fluent/.gem/ruby/2.3.0/cache/*.gem
